@@ -1,4 +1,4 @@
-name: CI Pipeline to staging/production environment
+name: Run tests
 on:
   pull_request:
     branches:
@@ -6,14 +6,15 @@ on:
       - development
       - main
 jobs:
-  test:
+  execute-tests:
     runs-on: ubuntu-latest
-    name: Setup, test, and build project
-    env:
-      PORT: 5001
+    name: Setup and test project
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Install packages
+        run: npm install 
 
       - name: Run action
         run: echo "Hello world"
